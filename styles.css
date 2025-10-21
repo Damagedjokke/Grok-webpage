@@ -55,3 +55,37 @@ section {
 #puzzle-result, #quiz-result {
     font-weight: bold;
 }
+
+/* New: Styles for drag-and-drop puzzle */
+.rune-container, .slot-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.rune {
+    padding: 15px;
+    border: 1px solid #ecf0f1;
+    border-radius: 5px;
+    cursor: grab;
+    text-align: center;
+    width: 80px;
+}
+
+#rune1 { background-color: #e74c3c; } /* Fire - red */
+#rune2 { background-color: #3498db; } /* Water - blue */
+#rune3 { background-color: #27ae60; } /* Earth - green */
+
+.slot {
+    padding: 15px;
+    border: 2px dashed #ecf0f1;
+    border-radius: 5px;
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.slot.drag-over {
+    border-color: #f39c12; /* Highlight when dragging over */
+}
