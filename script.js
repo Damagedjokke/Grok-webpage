@@ -196,13 +196,13 @@ function dragonAttack() {
     playerHealth -= damage;
     playerHealth = Math.max(playerHealth, 0);
     
-    const battleResult = document.getElementById('battle-result'); // Reuse for temp message
-    battleResult.textContent = `Dragon attacks! Deals ${damage} damage to you.`;
-    battleResult.style.color = 'red';
-    battleResult.style.display = 'block';
+    const tempMessage = document.getElementById('temp-battle-message');
+    tempMessage.textContent = `Dragon attacks! Deals ${damage} damage to you.`;
+    tempMessage.style.color = 'red';
+    tempMessage.style.display = 'block';
     
     setTimeout(() => {
-        battleResult.style.display = 'none';
+        tempMessage.style.display = 'none';
     }, 2000);
     
     updateHealthBars();
@@ -261,6 +261,7 @@ document.getElementById('restart-button').addEventListener('click', function() {
     document.getElementById('puzzle-result').style.display = 'none';
     document.getElementById('quiz-result').style.display = 'none';
     document.getElementById('battle-result').style.display = 'none';
+    document.getElementById('temp-battle-message').style.display = 'none';
     document.getElementById('quiz-input').value = '';
     document.getElementById('sword-effect').style.display = 'none';
     document.getElementById('potion-effect').style.display = 'none';
