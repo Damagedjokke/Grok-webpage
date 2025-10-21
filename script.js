@@ -235,7 +235,7 @@ document.getElementById('potion-link').addEventListener('click', function(e) {
     }
 });
 
-// New: Restart button logic
+// Restart button logic
 document.getElementById('restart-button').addEventListener('click', function() {
     // Reset runes to starting position
     runes.forEach(rune => {
@@ -246,10 +246,16 @@ document.getElementById('restart-button').addEventListener('click', function() {
         slot.innerHTML = 'Drop here';
     });
 
-    // Hide sections
-    document.getElementById('quiz-section').style.display = 'none';
-    document.getElementById('artifacts-section').style.display = 'none';
-    document.getElementById('battle-section').style.display = 'none';
+    // Hide sections and reset opacity
+    const quizSection = document.getElementById('quiz-section');
+    const artifactsSection = document.getElementById('artifacts-section');
+    const battleSection = document.getElementById('battle-section');
+    quizSection.style.display = 'none';
+    quizSection.style.opacity = '0';
+    artifactsSection.style.display = 'none';
+    artifactsSection.style.opacity = '0';
+    battleSection.style.display = 'none';
+    battleSection.style.opacity = '0';
 
     // Clear results and inputs
     document.getElementById('puzzle-result').style.display = 'none';
@@ -260,12 +266,24 @@ document.getElementById('restart-button').addEventListener('click', function() {
     document.getElementById('potion-effect').style.display = 'none';
     document.getElementById('spell-result').style.display = 'none';
 
-    // Reset battle state
+    // Reset battle state and health bars
     playerHealth = 100;
     dragonHealth = 150;
     potionUses = 1;
     battleActive = true;
-    document.getElementById('potion-link').style.pointerEvents = 'auto';
-    document.getElementById('potion-link').textContent = 'Healing Potion (Click to Heal in Battle)';
-    updateHealthBars(); // Reset bars (though hidden)
+    const potionLink = document.getElementById('potion-link');
+    potionLink.style.pointerEvents = 'auto';
+    potionLink.textContent = 'Healing Potion (Click to Heal in Battle)';
+    updateHealthBars();
+
+    // Clear any lingering classes
+    document.body.classList.remove('shake');
+    document.getElementById('player-health').classList.remove('low-health');
+    document.getElementById('dragon-health').classList.remove('low-health');
+
+    // Optional: Brief fade effect for feedback
+    document.body.style.opacity = '0.5';
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 500);
 });
