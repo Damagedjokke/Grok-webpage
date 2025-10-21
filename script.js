@@ -50,7 +50,6 @@ function drop(e) {
     slots.forEach(s => {
         if (s.contains(draggable)) {
             s.innerHTML = 'Drop here';
-            s.appendChild(draggable); // Wait, no: Actually, append to new slot
         }
     });
     
@@ -82,8 +81,17 @@ document.getElementById('check-puzzle').addEventListener('click', function() {
     result.style.display = 'block';
 });
 
-// Quiz interaction to reveal artifacts (unchanged)
-document.getElementById('quiz-button').addEventListener('click', function() {
+// Quiz interaction to reveal artifacts
+const quizInput = document.getElementById('quiz-input');
+quizInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkQuiz();
+    }
+});
+
+document.getElementById('quiz-button').addEventListener('click', checkQuiz);
+
+function checkQuiz() {
     var input = document.getElementById('quiz-input').value.toLowerCase();
     var result = document.getElementById('quiz-result');
     var artifactsSection = document.getElementById('artifacts-section');
@@ -97,4 +105,31 @@ document.getElementById('quiz-button').addEventListener('click', function() {
         result.style.color = 'red';
     }
     result.style.display = 'block';
+}
+
+// New: Artifact interactions
+document.getElementById('sword-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    var effect = document.getElementById('sword-effect');
+    effect.textContent = 'You strike down shadows! Slash!';
+    effect.style.display = 'block';
+    document.body.classList.add('shake'); // Shake the page
+    document.body.style.backgroundColor = '#c0392b'; // Dark red for battle
+    setTimeout(function() {
+        document.body.classList.remove('shake');
+        document.body.style.backgroundColor = '#2c3e50'; // Reset
+        effect.style.display = 'none'; // Hide after use (or keep if you want reusable)
+    }, 1500);
+});
+
+document.getElementById('potion-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    var effect = document.getElementById('potion-effect');
+    effect.textContent = 'Health restored—feel the magic flow!';
+    effect.style.display = 'block';
+    document.body.style.backgroundColor = '#27ae60'; // Green for healing
+    setTimeout(function() {
+        document.body.style.backgroundColor = '#2c3e50'; // Reset
+        effect.style.display = 'none'; // Hide after use
+    }, 1500);
 });
