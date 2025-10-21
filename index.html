@@ -9,21 +9,33 @@
 <body>
     <header>
         <h1>Welcome to the Enchanted Forest Adventure</h1>
-        <p>Embark on a quest: Solve riddles, answer dragon lore, and uncover ancient artifacts!</p>
+        <p>Embark on a quest: Arrange the runes, answer dragon lore, and uncover ancient artifacts!</p>
     </header>
 
     <section id="puzzle-section">
-        <h2>The Whispering Riddle</h2>
-        <p>I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?</p>
-        <input type="text" id="puzzle-input" placeholder="Type your answer...">
-        <button id="puzzle-button">Whisper the Answer</button>
+        <h2>The Rune Arrangement Puzzle</h2>
+        <p>Drag the runes into the slots in the correct order to unlock the dragon's riddle. Hint: Balance the elements—water nurtures earth, which fuels fire.</p>
+        
+        <div class="rune-container">
+            <div id="rune1" class="rune" draggable="true">🔥 Fire</div>
+            <div id="rune2" class="rune" draggable="true">💧 Water</div>
+            <div id="rune3" class="rune" draggable="true">🌿 Earth</div>
+        </div>
+        
+        <div class="slot-container">
+            <div id="slot1" class="slot">Drop here</div>
+            <div id="slot2" class="slot">Drop here</div>
+            <div id="slot3" class="slot">Drop here</div>
+        </div>
+        
+        <button id="check-puzzle">Check Arrangement</button>
         <p id="puzzle-result" style="display: none;"></p>
     </section>
 
     <section>
         <h2>Cast a Spell (For Guidance)</h2>
         <button id="spell-button">Cast Fireball!</button>
-        <p id="spell-result" style="display: none;">Whoosh! Flames dance across the sky! (Hint: Think of mountain echoes...)</p>
+        <p id="spell-result" style="display: none;">Whoosh! Flames dance... (Hint: Start with water, then earth, end with fire.)</p>
     </section>
 
     <section id="quiz-section" style="display: none;">
