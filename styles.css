@@ -1,0 +1,48 @@
+body {
+    font-family: 'Georgia', serif; /* Gives a medieval book feel */
+    background-color: #2c3e50; /* Dark blue-gray for mystery */
+    color: #ecf0f1; /* Light text for contrast */
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://example.com/fantasy-background.jpg'); /* Replace with a real image URL */
+    background-size: cover; /* Makes the background fill the page */
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #e67e22; /* Orange border for a fiery touch */
+}
+
+h1, h2 {
+    color: #f39c12; /* Golden yellow for headers */
+}
+
+button {
+    background-color: #27ae60; /* Green for magic */
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: #2ecc71; /* Lighter green on hover */
+}
+
+a {
+    color: #3498db; /* Blue links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e74c3c; /* Red glow on hover */
+    text-shadow: 0 0 5px #e74c3c; /* Actual glow effect */
+}
+
+.artifact {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent box for descriptions */
+    padding: 10px;
+    border-radius: 5px;
+}
