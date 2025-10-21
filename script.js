@@ -12,9 +12,11 @@ document.getElementById('spell-button').addEventListener('click', function() {
 // Drag-and-drop logic for runes
 const runes = document.querySelectorAll('.rune');
 const slots = document.querySelectorAll('.slot');
+const runeContainer = document.querySelector('.rune-container');
 
 runes.forEach(rune => {
     rune.addEventListener('dragstart', dragStart);
+    rune.addEventListener('dragend', dragEnd); // New: Handle missed drops
 });
 
 slots.forEach(slot => {
@@ -27,6 +29,14 @@ slots.forEach(slot => {
 function dragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
     setTimeout(() => this.style.display = 'none', 0); // Hide while dragging
+}
+
+function dragEnd() {
+    // If not dropped in a slot, reset to original container
+    if (!this.parentElement || !this.parentElement.classList.contains('slot')) {
+        runeContainer.appendChild(this);
+        this.style.display = 'block';
+    }
 }
 
 function dragOver(e) {
@@ -107,7 +117,7 @@ function checkQuiz() {
     result.style.display = 'block';
 }
 
-// New: Artifact interactions
+// Artifact interactions
 document.getElementById('sword-link').addEventListener('click', function(e) {
     e.preventDefault();
     var effect = document.getElementById('sword-effect');
@@ -118,7 +128,7 @@ document.getElementById('sword-link').addEventListener('click', function(e) {
     setTimeout(function() {
         document.body.classList.remove('shake');
         document.body.style.backgroundColor = '#2c3e50'; // Reset
-        effect.style.display = 'none'; // Hide after use (or keep if you want reusable)
+        effect.style.display = 'none'; // Hide after use (or remove this line if you want persistent)
     }, 1500);
 });
 
