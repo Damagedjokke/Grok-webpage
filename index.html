@@ -3,37 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Fantasy Realm</title>
+    <title>My Fantasy Realm Adventure</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to the Enchanted Forest</h1>
-        <p>Explore the mysteries of the realm!</p>
+        <h1>Welcome to the Enchanted Forest Adventure</h1>
+        <p>Embark on a quest: Solve riddles, answer dragon lore, and uncover ancient artifacts!</p>
     </header>
 
-    <section>
-        <h2>Cast a Spell</h2>
-        <button id="spell-button">Cast Fireball!</button>
-        <p id="spell-result" style="display: none;">Whoosh! Flames dance across the sky!</p>
+    <section id="puzzle-section">
+        <h2>The Whispering Riddle</h2>
+        <p>I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?</p>
+        <input type="text" id="puzzle-input" placeholder="Type your answer...">
+        <button id="puzzle-button">Whisper the Answer</button>
+        <p id="puzzle-result" style="display: none;"></p>
     </section>
 
     <section>
-        <h2>Unlock the Treasure</h2>
+        <h2>Cast a Spell (For Guidance)</h2>
+        <button id="spell-button">Cast Fireball!</button>
+        <p id="spell-result" style="display: none;">Whoosh! Flames dance across the sky! (Hint: Think of mountain echoes...)</p>
+    </section>
+
+    <section id="quiz-section" style="display: none;">
+        <h2>The Dragon's Riddle</h2>
         <p>What is the dragon's favorite color?</p>
         <input type="text" id="quiz-input" placeholder="Type your guess...">
-        <button id="quiz-button">Submit</button>
+        <button id="quiz-button">Submit to the Dragon</button>
         <p id="quiz-result" style="display: none;"></p>
     </section>
 
-    <section>
-        <h2>Ancient Artifacts</h2>
+    <section id="artifacts-section" style="display: none;">
+        <h2>Ancient Artifacts Unlocked!</h2>
+        <p>Congratulations, adventurer! You've earned these treasures.</p>
         <ul>
             <li><a href="#sword">Magic Sword</a></li>
             <li><a href="#potion">Healing Potion</a></li>
         </ul>
-        <p id="sword" class="artifact">The sword glows with ancient power.</p>
-        <p id="potion" class="artifact">This potion restores health in battles.</p>
+        <p id="sword" class="artifact">The sword glows with ancient power, forged in dragonfire.</p>
+        <p id="potion" class="artifact">This potion restores health in battles, brewed from elven herbs.</p>
     </section>
 
     <footer>
