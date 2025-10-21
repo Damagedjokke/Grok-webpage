@@ -149,10 +149,6 @@ progress.low-health::-webkit-progress-value {
     background-color: #e74c3c; /* Red when low */
 }
 
-#battle-result {
-    color: #f39c12; /* Gold for results */
-}
-
 /* New: Style for dragon image */
 .dragon-image {
     width: 100%;
@@ -175,4 +171,19 @@ footer {
 
 #restart-button:hover {
     background-color: #c0392b;
+}
+
+/* New: Enhanced style for permanent battle result */
+#battle-result {
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px solid #f39c12;
+    border-radius: 5px;
+}
+
+#temp-battle-message {
+    text-align: center;
+    color: #ecf0f1;
 }
