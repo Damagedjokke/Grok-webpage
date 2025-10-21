@@ -162,3 +162,17 @@ progress.low-health::-webkit-progress-value {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Glowing effect */
 }
+
+/* New: Style for restart button */
+footer {
+    text-align: center;
+}
+
+#restart-button {
+    background-color: #e74c3c; /* Red for reset */
+    margin-top: 10px;
+}
+
+#restart-button:hover {
+    background-color: #c0392b;
+}
