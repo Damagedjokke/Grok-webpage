@@ -153,12 +153,15 @@ function checkBattleEnd() {
         battleResult.style.color = 'red';
         battleResult.style.display = 'block';
         battleActive = false;
+        return true; // Battle ended
     } else if (dragonHealth <= 0) {
         battleResult.textContent = 'Victory! You slay the dragon and claim the realm!';
         battleResult.style.color = 'gold';
         battleResult.style.display = 'block';
         battleActive = false;
+        return true; // Battle ended
     }
+    return false;
 }
 
 // Artifact interactions (now tied to battle)
@@ -183,9 +186,9 @@ document.getElementById('sword-link').addEventListener('click', function(e) {
     }, 1000);
     
     updateHealthBars();
-    checkBattleEnd();
+    const ended = checkBattleEnd();
     
-    if (battleActive) {
+    if (battleActive && !ended) {
         // Dragon counter-attack
         setTimeout(dragonAttack, 1500);
     }
@@ -196,17 +199,19 @@ function dragonAttack() {
     playerHealth -= damage;
     playerHealth = Math.max(playerHealth, 0);
     
-    const tempMessage = document.getElementById('temp-battle-message');
-    tempMessage.textContent = `Dragon attacks! Deals ${damage} damage to you.`;
-    tempMessage.style.color = 'red';
-    tempMessage.style.display = 'block';
-    
-    setTimeout(() => {
-        tempMessage.style.display = 'none';
-    }, 2000);
-    
     updateHealthBars();
-    checkBattleEnd();
+    const ended = checkBattleEnd();
+    
+    if (!ended) {
+        const tempMessage = document.getElementById('temp-battle-message');
+        tempMessage.textContent = `Dragon attacks! Deals ${damage} damage to you.`;
+        tempMessage.style.color = 'red';
+        tempMessage.style.display = 'block';
+        
+        setTimeout(() => {
+            tempMessage.style.display = 'none';
+        }, 2000);
+    }
 }
 
 document.getElementById('potion-link').addEventListener('click', function(e) {
