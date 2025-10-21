@@ -9,7 +9,7 @@
 <body>
     <header>
         <h1>Welcome to the Enchanted Forest Adventure</h1>
-        <p>Embark on a quest: Arrange the runes, answer dragon lore, and uncover ancient artifacts!</p>
+        <p>Embark on a quest: Arrange the runes, answer dragon lore, uncover artifacts, and battle the dragon!</p>
     </header>
 
     <section id="puzzle-section">
@@ -48,19 +48,38 @@
 
     <section id="artifacts-section" style="display: none;">
         <h2>Ancient Artifacts Unlocked!</h2>
-        <p>Congratulations, adventurer! You've earned these treasures. Click them to unleash their power!</p>
+        <p>Congratulations, adventurer! You've earned these treasures. Use them wisely in battle!</p>
         <ul>
             <li class="artifact-item" id="sword-item">
-                <a href="#" id="sword-link">Magic Sword</a>
+                <a href="#" id="sword-link">Magic Sword (Click to Attack in Battle)</a>
                 <p id="sword" class="artifact">The sword glows with ancient power, forged in dragonfire.</p>
                 <p id="sword-effect" class="effect" style="display: none;"></p>
             </li>
             <li class="artifact-item" id="potion-item">
-                <a href="#" id="potion-link">Healing Potion</a>
+                <a href="#" id="potion-link">Healing Potion (Click to Heal in Battle)</a>
                 <p id="potion" class="artifact">This potion restores health in battles, brewed from elven herbs.</p>
                 <p id="potion-effect" class="effect" style="display: none;"></p>
             </li>
         </ul>
+    </section>
+
+    <section id="battle-section" style="display: none;">
+        <h2>Battle the Dragon!</h2>
+        <p>The guardian dragon awakens—use your artifacts to fight! Attack with the sword or heal with the potion.</p>
+        
+        <div class="health-bar-container">
+            <label>Your Health:</label>
+            <progress id="player-health" value="100" max="100"></progress>
+            <span id="player-health-text">100/100</span>
+        </div>
+        
+        <div class="health-bar-container">
+            <label>Dragon Health:</label>
+            <progress id="dragon-health" value="150" max="150"></progress>
+            <span id="dragon-health-text">150/150</span>
+        </div>
+        
+        <p id="battle-result" style="display: none; font-weight: bold;"></p>
     </section>
 
     <footer>
