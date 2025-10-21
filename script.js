@@ -149,7 +149,7 @@ function updateHealthBars() {
 function checkBattleEnd() {
     const battleResult = document.getElementById('battle-result');
     if (playerHealth <= 0) {
-        battleResult.textContent = 'Defeat! The dragon overwhelms you. Refresh to try again.';
+        battleResult.textContent = 'Defeat! The dragon overwhelms you. Restart to try again.';
         battleResult.style.color = 'red';
         battleResult.style.display = 'block';
         battleActive = false;
@@ -233,4 +233,39 @@ document.getElementById('potion-link').addEventListener('click', function(e) {
         this.style.pointerEvents = 'none'; // Disable link
         this.textContent = 'Healing Potion (Used)';
     }
+});
+
+// New: Restart button logic
+document.getElementById('restart-button').addEventListener('click', function() {
+    // Reset runes to starting position
+    runes.forEach(rune => {
+        runeContainer.appendChild(rune);
+        rune.style.display = 'block';
+    });
+    slots.forEach(slot => {
+        slot.innerHTML = 'Drop here';
+    });
+
+    // Hide sections
+    document.getElementById('quiz-section').style.display = 'none';
+    document.getElementById('artifacts-section').style.display = 'none';
+    document.getElementById('battle-section').style.display = 'none';
+
+    // Clear results and inputs
+    document.getElementById('puzzle-result').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'none';
+    document.getElementById('battle-result').style.display = 'none';
+    document.getElementById('quiz-input').value = '';
+    document.getElementById('sword-effect').style.display = 'none';
+    document.getElementById('potion-effect').style.display = 'none';
+    document.getElementById('spell-result').style.display = 'none';
+
+    // Reset battle state
+    playerHealth = 100;
+    dragonHealth = 150;
+    potionUses = 1;
+    battleActive = true;
+    document.getElementById('potion-link').style.pointerEvents = 'auto';
+    document.getElementById('potion-link').textContent = 'Healing Potion (Click to Heal in Battle)';
+    updateHealthBars(); // Reset bars (though hidden)
 });
