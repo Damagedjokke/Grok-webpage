@@ -124,3 +124,31 @@ section {
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+/* New: Styles for health bars */
+.health-bar-container {
+    margin: 10px 0;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+    background-color: #34495e; /* Bar background */
+}
+
+progress::-webkit-progress-bar {
+    background-color: #34495e;
+}
+
+progress::-webkit-progress-value {
+    background-color: #2ecc71; /* Green for health */
+    transition: width 0.5s; /* Smooth update */
+}
+
+progress.low-health::-webkit-progress-value {
+    background-color: #e74c3c; /* Red when low */
+}
+
+#battle-result {
+    color: #f39c12; /* Gold for results */
+}
