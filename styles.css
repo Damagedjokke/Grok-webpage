@@ -1,44 +1,57 @@
-// Spell button interaction (unchanged, for fun)
-document.getElementById('spell-button').addEventListener('click', function() {
-    var result = document.getElementById('spell-result');
-    result.style.display = 'block'; // Show the hidden message
-    // Optional: Change page color for fun
-    document.body.style.backgroundColor = '#e74c3c'; // Turns red like fire
-    setTimeout(function() {
-        document.body.style.backgroundColor = '#2c3e50'; // Reset after 2 seconds
-    }, 2000);
-});
+body {
+    font-family: 'Georgia', serif; /* Gives a medieval book feel */
+    background-color: #2c3e50; /* Dark blue-gray for mystery */
+    color: #ecf0f1; /* Light text for contrast */
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://example.com/fantasy-background.jpg'); /* Replace with a real image URL */
+    background-size: cover; /* Makes the background fill the page */
+}
 
-// Puzzle interaction to reveal quiz
-document.getElementById('puzzle-button').addEventListener('click', function() {
-    var input = document.getElementById('puzzle-input').value.toLowerCase();
-    var result = document.getElementById('puzzle-result');
-    var quizSection = document.getElementById('quiz-section');
-    if (input === 'echo') {
-        result.textContent = 'Correct! The winds whisper secrets... The dragon\'s riddle is revealed!';
-        result.style.color = 'gold';
-        quizSection.style.display = 'block'; // Reveal the quiz section
-        quizSection.style.opacity = '1'; // For fade-in
-    } else {
-        result.textContent = 'Wrong! Listen to the winds again. Try another answer!';
-        result.style.color = 'red';
-    }
-    result.style.display = 'block';
-});
+header {
+    text-align: center;
+    border-bottom: 2px solid #e67e22; /* Orange border for a fiery touch */
+}
 
-// Quiz interaction to reveal artifacts
-document.getElementById('quiz-button').addEventListener('click', function() {
-    var input = document.getElementById('quiz-input').value.toLowerCase();
-    var result = document.getElementById('quiz-result');
-    var artifactsSection = document.getElementById('artifacts-section');
-    if (input === 'gold') {
-        result.textContent = 'Correct! You unlock a chest of treasures! Artifacts revealed below.';
-        result.style.color = 'gold';
-        artifactsSection.style.display = 'block'; // Reveal the artifacts
-        artifactsSection.style.opacity = '1'; // For fade-in
-    } else {
-        result.textContent = 'Wrong! The dragon hoards gold. Try again!';
-        result.style.color = 'red';
-    }
-    result.style.display = 'block';
-});
+h1, h2 {
+    color: #f39c12; /* Golden yellow for headers */
+}
+
+button {
+    background-color: #27ae60; /* Green for magic */
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: #2ecc71; /* Lighter green on hover */
+}
+
+a {
+    color: #3498db; /* Blue links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e74c3c; /* Red glow on hover */
+    text-shadow: 0 0 5px #e74c3c; /* Actual glow effect */
+}
+
+.artifact {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent box for descriptions */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* New: Animation for revealing sections */
+section {
+    transition: opacity 1s ease-in-out; /* Fade in when shown */
+}
+
+#puzzle-result, #quiz-result {
+    font-weight: bold;
+}
