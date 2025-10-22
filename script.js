@@ -33,12 +33,16 @@ slots.forEach(slot => {
 });
 
 function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id);
+    e.dataTransfer.setData('text/plain', this.id);
     setTimeout(() => this.style.display = 'none', 0); // Hide while dragging
 }
 
 function dragEnd() {
-    this.style.display = 'block'; // Always show on end (snaps back if missed)
+    this.style.display = 'block'; // Always show on end
+    // If not in a slot after drag (missed drop), snap back to container
+    if (!this.parentElement || !this.parentElement.classList.contains('slot')) {
+        runeContainer.appendChild(this);
+    }
 }
 
 function dragOver(e) {
@@ -55,10 +59,11 @@ function dragLeave() {
 }
 
 function drop(e) {
+    e.preventDefault();
     const id = e.dataTransfer.getData('text/plain');
     const draggable = document.getElementById(id);
     
-    // Remove from previous slot if any
+    // Remove draggable from its previous slot if any
     slots.forEach(s => {
         if (s.contains(draggable)) {
             s.removeChild(draggable);
@@ -66,16 +71,15 @@ function drop(e) {
         }
     });
     
-    // Handle if target is occupied: move existing back to container
+    // If this slot is occupied, move existing rune back to container
     const existing = this.querySelector('.rune');
     if (existing) {
         runeContainer.appendChild(existing);
     }
     
-    // Append to this slot
+    // Append the new draggable to this slot
     this.innerHTML = '';
     this.appendChild(draggable);
-    draggable.style.display = 'block';
     this.classList.remove('drag-over');
 }
 
