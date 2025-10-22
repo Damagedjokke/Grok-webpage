@@ -38,11 +38,7 @@ function dragStart(e) {
 }
 
 function dragEnd() {
-    // If not dropped in a slot, reset to original container
-    if (!this.parentElement || !this.parentElement.classList.contains('slot')) {
-        runeContainer.appendChild(this);
-        this.style.display = 'block';
-    }
+    this.style.display = 'block'; // Always show on end (snaps back if missed)
 }
 
 function dragOver(e) {
@@ -65,9 +61,16 @@ function drop(e) {
     // Remove from previous slot if any
     slots.forEach(s => {
         if (s.contains(draggable)) {
+            s.removeChild(draggable);
             s.innerHTML = 'Drop here';
         }
     });
+    
+    // Handle if target is occupied: move existing back to container
+    const existing = this.querySelector('.rune');
+    if (existing) {
+        runeContainer.appendChild(existing);
+    }
     
     // Append to this slot
     this.innerHTML = '';
@@ -78,9 +81,9 @@ function drop(e) {
 
 // Puzzle check button
 document.getElementById('check-puzzle').addEventListener('click', function() {
-    const slot1Content = document.getElementById('slot1').firstChild ? document.getElementById('slot1').firstChild.id : null;
-    const slot2Content = document.getElementById('slot2').firstChild ? document.getElementById('slot2').firstChild.id : null;
-    const slot3Content = document.getElementById('slot3').firstChild ? document.getElementById('slot3').firstChild.id : null;
+    const slot1Content = document.getElementById('slot1').querySelector('.rune') ? document.getElementById('slot1').querySelector('.rune').id : null;
+    const slot2Content = document.getElementById('slot2').querySelector('.rune') ? document.getElementById('slot2').querySelector('.rune').id : null;
+    const slot3Content = document.getElementById('slot3').querySelector('.rune') ? document.getElementById('slot3').querySelector('.rune').id : null;
     
     var result = document.getElementById('puzzle-result');
     var quizSection = document.getElementById('quiz-section');
@@ -188,7 +191,7 @@ document.getElementById('sword-link').addEventListener('click', function(e) {
     updateHealthBars();
     const ended = checkBattleEnd();
     
-    if (battleActive && !ended) {
+    if (!ended) {
         // Dragon counter-attack
         setTimeout(dragonAttack, 1500);
     }
